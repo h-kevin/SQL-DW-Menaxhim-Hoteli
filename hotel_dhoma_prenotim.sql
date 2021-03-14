@@ -15,6 +15,7 @@ create table Klient (
     KlientEmri varchar(255) not null,
     KlientMbiemri varchar(255) not null,
     KlientDatelindje date not null,
+    IAkomoduar bit default 0,
     KlientAdreseRruga varchar(255) not null,
     KlientAdreseQyteti varchar(255) not null,
     KlientAdreseShteti varchar(255) not null,
@@ -61,18 +62,6 @@ create table Dhoma (
     references CmimDhome(CmimDhomeId),
 );
 
-create table TeAkomoduar (
-    IAkomoduarId int identity(1, 1) primary key,
-    IAkomoduarEmer varchar(255) not null,
-    IAkomoduarMbiemer varchar(255) not null,
-    IAkomoduarDatelindje date not null,
-    IAkomoduarAdreseRruga varchar(255) not null,
-    IAkomoduarAdreseQyteti varchar(255) not null,
-    IAkomoduarAdreseShteti varchar(255) not null,
-    IAkomoduarAdreseZip varchar(255) not null,
-    IAkomoduarNumerKontakti varchar(255) not null,
-);
-
 create table Paisje (
     PaisjeId int identity(1, 1) primary key,
     PaisjePershkrim varchar(255) not null,
@@ -112,12 +101,9 @@ create table PaisjeDhome (
 create table PrenotimeDhomash (
     PrenotimId int not null,
     DhomaId int not null,
-    IAkomoduarId int not null,
     constraint fk_prenotim foreign key (PrenotimId)
     references Prenotim(PrenotimId),
     constraint fk_prenotime_dhoma foreign key (DhomaId)
     references Dhoma(DhomaId),
-    constraint fk_akomoduar foreign key (IAkomoduarId)
-    references TeAkomoduar(IAkomoduarId),
-    constraint pj_prenotime_dhomash primary key (PrenotimId, DhomaId, IAkomoduarId),
+    constraint pj_prenotime_dhomash primary key (PrenotimId, DhomaId),
 );

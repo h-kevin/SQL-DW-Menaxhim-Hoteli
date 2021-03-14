@@ -101,4 +101,11 @@ insert into dbo.Prenotim (KlientId, PrenotimDate, PrenotimOre, PrenotimDateFilli
 insert into dbo.Prenotim (KlientId, PrenotimDate, PrenotimOre, PrenotimDateFillimi, PrenotimDateMbarimi, PrenotimDatePagimi, PrenotimPagesaTotale, PrenotimDatePaguar, PrenotimKomente) values (29, '2021-01-16', '18:43:55', '2021-02-17', '2021-02-26', '2021-02-25', 225, '2021-02-26', null);
 insert into dbo.Prenotim (KlientId, PrenotimDate, PrenotimOre, PrenotimDateFillimi, PrenotimDateMbarimi, PrenotimDatePagimi, PrenotimPagesaTotale, PrenotimDatePaguar, PrenotimKomente) values (33, '2021-02-07', '13:54:12', '2021-03-18', '2021-04-11', '2021-04-10', 600, null, null);
 
+update dbo.Prenotim
+set PrenotimDatePaguar = null
+where KlientId in (
+    select KlientId from dbo.Klient
+    where IAkomoduar = 0
+);
+
 select * from dbo.Prenotim;

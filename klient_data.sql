@@ -101,5 +101,11 @@ insert into dbo.Klient (KlientEmri, KlientMbiemri, KlientDatelindje, KlientAdres
 insert into dbo.Klient (KlientEmri, KlientMbiemri, KlientDatelindje, KlientAdreseRruga, KlientAdreseQyteti, KlientAdreseShteti, KlientAdreseZip, KlientTelefonShtepie, KlientTelefonPune, KlientEmail) values ('Larisa', 'Kimmerling', '1972-07-24', '54855 Upham Park', 'Louisville', 'Kentucky', '40256', '502-933-4399', '619-129-4423', 'lkimmerling2q@alibaba.com');
 insert into dbo.Klient (KlientEmri, KlientMbiemri, KlientDatelindje, KlientAdreseRruga, KlientAdreseQyteti, KlientAdreseShteti, KlientAdreseZip, KlientTelefonShtepie, KlientTelefonPune, KlientEmail) values ('Eleonora', 'Briatt', '1998-04-07', '17101 Acker Junction', 'Tucson', 'Arizona', '85743', '520-651-5309', '803-468-4422', 'ebriatt2r@studiopress.com');
 
+update dbo.Klient
+set IAkomoduar = 1
+where KlientId in (
+    select KlientId from dbo.Prenotim
+    where datediff(day, PrenotimDateFillimi, '2021-03-03') >= 0
+);
 
 select * from dbo.Klient;
